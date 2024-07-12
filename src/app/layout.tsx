@@ -1,9 +1,9 @@
+import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import RootLayoutComp from "@/layouts/RootLayout";
-
-const inter = Inter({ subsets: ["latin"] });
+import { AuthProvider } from "@/components";
+import { inter } from "@/utils";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <RootLayoutComp>{children}</RootLayoutComp>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <RootLayoutComp>{children}</RootLayoutComp>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

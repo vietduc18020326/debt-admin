@@ -1,9 +1,14 @@
 import React from "react";
+import { ConfigProvider } from "antd";
 
 export default function RootLayoutComp({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <div className={"root-container"}>{children}</div>;
+  return (
+    <ConfigProvider>
+      <div className={"root-container"}>{children}</div>
+    </ConfigProvider>
+  );
 }
