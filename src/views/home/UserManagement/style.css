@@ -1,0 +1,11 @@
+.highlight-bottom-border > td {
+    border-bottom: solid 1px black !important
+}
+
+.highlight-border > td {
+    border: solid 0.5px #6d9eff !important
+}
+
+.ant-table-bordered {
+    border: 0.5px solid rgba(255, 255, 255, 0.25);
+}

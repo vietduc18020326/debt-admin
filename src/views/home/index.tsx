@@ -5,6 +5,7 @@ import { Button } from "antd";
 import { useMe } from "@/store/users";
 import { IMAGE_LOGO } from "@/dummy";
 import { UIText } from "@/components";
+import { UserManagement } from "@/views/home/UserManagement";
 
 const HomeView = memo(function HomeView() {
   const { onLogout } = useManualLogin();
@@ -35,7 +36,7 @@ const HomeView = memo(function HomeView() {
           <Button onClick={onClick}>Logout</Button>
         </div>
       </div>
-      <div className="h-full w-full bg-black p-4 flex gap-[48px] rounded-[40px] flex-col"></div>
+      <UserManagement />
     </div>
   );
 });

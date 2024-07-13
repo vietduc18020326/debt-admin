@@ -7,7 +7,16 @@ export default function RootLayoutComp({
   children: React.ReactNode;
 }) {
   return (
-    <ConfigProvider>
+    <ConfigProvider
+      theme={{
+        components: {
+          Table: {
+            headerBg: "rgba(35, 32, 28, 1)",
+            headerColor: "rgba(197, 199, 209, 1)",
+          },
+        },
+      }}
+    >
       <div className={"root-container"}>{children}</div>
     </ConfigProvider>
   );
