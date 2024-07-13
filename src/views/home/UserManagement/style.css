@@ -1,11 +1,53 @@
-.highlight-bottom-border > td {
-    border-bottom: solid 1px black !important
-}
 
-.highlight-border > td {
-    border: solid 0.5px #6d9eff !important
-}
-
-.ant-table-bordered {
+.ant-table-cell {
     border: 0.5px solid rgba(255, 255, 255, 0.25);
+}
+
+.table-row {
+   background: rgba(11, 10, 10, 0.54);
+}
+
+.ant-table-wrapper .ant-table {
+    background: transparent;
+}
+
+.ant-table-wrapper .ant-table-tbody >tr >td,
+.ant-table-wrapper .ant-table-tbody >tr >th,
+.ant-table-wrapper .ant-table-thead >tr>th{
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.25);
+}
+
+.ant-table-wrapper .ant-table-thead >tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    height: 0
+}
+
+.ant-pagination .ant-pagination-disabled .ant-pagination-item-link {
+    color: #fff;
+}
+
+.ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder {
+    background: rgba(11, 10, 10, 0.54);
+}
+
+.ant-empty .ant-empty-description {
+    color: #fff;
+}
+
+.action-cell {
+    background: rgba(255, 255, 255, 0.15);
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    border-width: 0;
+    padding: 0;
+}
+
+/*.ant-btn:hover {*/
+/*    background-color: red;*/
+/*}*/
+
+.action-cell > .ant-btn-icon {
+    width: fit-content;
 }

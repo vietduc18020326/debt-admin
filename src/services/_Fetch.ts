@@ -264,8 +264,18 @@ class SFetch {
         }
       : _response;
 
-    if (response.data && typeof response.data === "string")
-      throw new Error(response.data);
+    if (response.data && typeof response.data === "string") {
+      // @ts-ignore
+      throw new Error(response.data.message);
+    }
+
+    if (
+      response.data &&
+      response.data.code >= 400 &&
+      response.data.code < 600
+    ) {
+      throw new Error(response.data.message);
+    }
 
     if (response.data && parseInt(response.data.code) === 0) {
       console.warn("Error while fetching data", {

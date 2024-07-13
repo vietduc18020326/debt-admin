@@ -11,8 +11,12 @@ export default function RootLayoutComp({
       theme={{
         components: {
           Table: {
-            headerBg: "rgba(35, 32, 28, 1)",
+            headerBg: "#23201C",
             headerColor: "rgba(197, 199, 209, 1)",
+            rowHoverBg: "rgba(255, 255, 255, 0.2)",
+          },
+          Button: {
+            defaultHoverBg: "rgba(255, 255, 255, 0.4)",
           },
         },
       }}

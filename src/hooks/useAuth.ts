@@ -2,9 +2,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { clearAllToken, isLoggedIn } from "@/utils";
 import { useCallback, useEffect } from "react";
 import { _Core } from "@/services/_Core";
-import { requestLoadMe } from "@/store/users/function";
+import { requestLoadMe, requestRefreshToken } from "@/store/users/function";
 import { useAsyncFn } from "react-use";
 import { useAutoToastErrors } from "@/hooks/useAutoErrors";
+import { AxiosError } from "axios";
+import { message } from "antd";
 
 export function useAuth() {
   const publicPages = ["/sign-in", "/sign-up"];
@@ -12,20 +14,43 @@ export function useAuth() {
   const pathname = usePathname();
   const { push } = useRouter();
 
-  const [{ error }, onAuth] = useAsyncFn(
+  const onAuthError = useCallback(async (e: AxiosError) => {
+    // @ts-ignore
+    const m = e?.response?.data?.message || e.message || e;
+    if (m.toLowerCase().includes("expired")) {
+      await onRefreshToken();
+      return;
+    }
+    await message.error(m as string);
+  }, []);
+
+  const onRefreshToken = useCallback(async () => {
+    try {
+      await requestRefreshToken();
+      await requestLoadMe();
+    } catch (err: any) {
+      onAuthError(err).then();
+    }
+  }, []);
+
+  const onAuth = useCallback(
     async (pathname: string) => {
-      const isInsidePublicPages = publicPages.some((p) => p === pathname);
+      try {
+        const isInsidePublicPages = publicPages.some((p) => p === pathname);
 
-      if (isLoggedIn()) {
-        // load me
-        await requestLoadMe();
+        if (isLoggedIn()) {
+          // load me
+          await requestLoadMe();
 
-        return push("/home");
-      }
+          return push("/home");
+        }
 
-      if (!isLoggedIn() && !isInsidePublicPages) {
-        clearAllToken();
-        return push("/sign-in");
+        if (!isLoggedIn() && !isInsidePublicPages) {
+          clearAllToken();
+          return push("/sign-in");
+        }
+      } catch (error: any) {
+        onAuthError(error).then();
       }
     },
     [pathname]
@@ -34,6 +59,4 @@ export function useAuth() {
   useEffect(() => {
     onAuth(pathname).then();
   }, [pathname]);
-
-  useAutoToastErrors([error]);
 }

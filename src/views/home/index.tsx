@@ -6,6 +6,11 @@ import { useMe } from "@/store/users";
 import { IMAGE_LOGO } from "@/dummy";
 import { UIText } from "@/components";
 import { UserManagement } from "@/views/home/UserManagement";
+import {
+  Logout03Icon,
+  PencilEdit01Icon,
+  UserCircle02Icon,
+} from "hugeicons-react";
 
 const HomeView = memo(function HomeView() {
   const { onLogout } = useManualLogin();
@@ -32,8 +37,22 @@ const HomeView = memo(function HomeView() {
           </div>
         </div>
         <div className="flex flex-col gap-[24px]">
-          {/*<Button onClick={onClick}>Logout</Button>*/}
-          <Button onClick={onClick}>Logout</Button>
+          <Button type={"text"} className="justify-between p-0">
+            <UIText.BodyLarge400 className={"text-white"}>
+              Đổi mật khẩu
+            </UIText.BodyLarge400>
+            <UserCircle02Icon size={24} style={{ color: "#fff" }} />
+          </Button>
+          <Button
+            type={"text"}
+            onClick={onClick}
+            className="justify-between p-0"
+          >
+            <UIText.BodyLarge400 className={"text-white"}>
+              Đăng xuất
+            </UIText.BodyLarge400>
+            <Logout03Icon size={24} style={{ color: "#fff" }} />
+          </Button>
         </div>
       </div>
       <UserManagement />
