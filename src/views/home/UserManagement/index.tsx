@@ -96,7 +96,7 @@ export const UserManagement = memo(function UserManagement() {
       <UIText.HeaderLarge className="text-white sticky top-0 left-0">
         Quản lý người dùng
       </UIText.HeaderLarge>
-      <div className="min-w-[985px] overflow-scroll ">
+      <div className="min-w-[985px]">
         <Table
           columns={columns as any}
           dataSource={userIds as any}
