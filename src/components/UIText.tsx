@@ -66,6 +66,22 @@ const HeaderLarge = memo(function HeaderLarge({
   );
 });
 
+const CaptionMedium500 = memo(function CaptionMedium500({
+  children,
+  ...rest
+}: PropsWithChildren<React.HTMLAttributes<HTMLParagraphElement>>) {
+  const { className, style, ...props } = rest;
+  return (
+    <Typography
+      className={`text-xs font-medium ${className}`}
+      style={style}
+      {...props}
+    >
+      {children}
+    </Typography>
+  );
+});
+
 export const UIText = {
   BodyMedium400,
   BodyMedium500,
@@ -73,4 +89,6 @@ export const UIText = {
   BodyLarge400,
 
   HeaderLarge,
+
+  CaptionMedium500,
 };

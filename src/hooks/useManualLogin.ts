@@ -11,7 +11,7 @@ import md5 from "md5";
 import { message } from "antd";
 import { AxiosError } from "axios";
 import { redirect } from "next/navigation";
-import { loginIn } from "@/store/users/function";
+import { loginIn, requestSignup } from "@/store/users/function";
 
 export function useManualLogin() {
   const onAuthError = useCallback(async (e: AxiosError) => {
@@ -74,13 +74,10 @@ export function useManualLogin() {
         const client_key = await onCreateClient();
 
         if (client_key) {
-          const { data } = await Fetch.postWithToken<any>(
-            `https://signup${process.env.NEXT_PUBLIC_DOMAIN}`,
-            {
-              ...params,
-              client_key,
-            }
-          );
+          await requestSignup({
+            ...params,
+            client_key,
+          });
         }
       } catch (e: any) {
         onAuthError(e).then();

@@ -25,8 +25,11 @@
     color: #fff;
 }
 
-.ant-table-wrapper .ant-table-tbody>tr.ant-table-placeholder {
-    background: rgba(11, 10, 10, 0.54);
+.ant-table-wrapper .ant-table-tbody > tr.ant-table-placeholder {
+    background: rgba(11, 10, 10, 0.54) !important;
+    :hover {
+        background: rgba(11, 10, 10, 0.54) !important;
+    }
 }
 
 .ant-empty .ant-empty-description {
@@ -42,12 +45,18 @@
     justify-content: center;
     border-width: 0;
     padding: 0;
+    margin: 0;
 }
 
-/*.ant-btn:hover {*/
-/*    background-color: red;*/
-/*}*/
+.ant-pagination .ant-pagination-disabled .ant-pagination-item-link,
+.ant-pagination .ant-pagination-disabled:hover .ant-pagination-item-link {
+    color: white;
+}
 
 .action-cell > .ant-btn-icon {
     width: fit-content;
+}
+
+.ant-btn-default:disabled {
+    background: rgba(255, 255, 255, 0.08);
 }

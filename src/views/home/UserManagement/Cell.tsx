@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { UIText } from "@/components";
 import { useUser } from "@/store/users";
 import moment from "moment";
@@ -9,6 +9,7 @@ import {
   PencilEdit01Icon,
 } from "hugeicons-react";
 import { Button } from "antd";
+import { isVerified } from "@/utils";
 
 interface Props {
   data?: any;
@@ -45,9 +46,14 @@ const CreatedDate = memo(function CreatedDate({ id }: Props) {
 
 const Status = memo(function Status({ id }: Props) {
   const user = useUser(id);
+
   return (
-    <UIText.BodyMedium400 className="text-white">
-      {"Chưa làm"}
+    <UIText.BodyMedium400
+      style={{
+        color: isVerified(user?.system_id) ? "rgba(6, 187, 57, 1)" : "white",
+      }}
+    >
+      {isVerified(user?.system_id) ? "Đã kích hoạt" : "Chưa kích hoạt"}
     </UIText.BodyMedium400>
   );
 });
@@ -56,9 +62,11 @@ const Action = memo(function Action({ id }: Props) {
   const user = useUser(id);
   return (
     <div className="flex gap-[8px]">
-      <div className="action-cell flex">
-        <CheckmarkCircle02Icon size={16} style={{ color: "#fff" }} />
-      </div>
+      <Button
+        icon={<CheckmarkCircle02Icon size={16} style={{ color: "#fff" }} />}
+        className="action-cell flex"
+        disabled={isVerified(user?.system_id)}
+      />
       <Button
         icon={<PencilEdit01Icon size={16} style={{ color: "#fff" }} />}
         className="action-cell flex"

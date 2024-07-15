@@ -36,6 +36,35 @@ export async function loginIn(params: { client_key: string }) {
   return data;
 }
 
+export async function requestSignup(params: {
+  email: string;
+  password: string;
+  client_key: string;
+}) {
+  const { data } = await Fetch.postWithToken<{
+    me?: IUser;
+    access_token: string;
+    refresh_token: string;
+  }>(`https://signup${process.env.NEXT_PUBLIC_DOMAIN}`, params);
+
+  saveClientKey(params.client_key);
+  _Core.clientKey = params.client_key;
+  if (data?.access_token) {
+    saveAccessToken(data?.access_token);
+    _Core.accessToken = data.access_token;
+  }
+
+  if (data?.refresh_token) {
+    saveRefreshToken(data?.refresh_token);
+  }
+
+  if (data?.me) {
+    syncMe(data.me);
+  }
+
+  return data;
+}
+
 export async function requestRefreshToken() {
   const { data } = await Fetch.postWithToken<{
     access_token?: string;

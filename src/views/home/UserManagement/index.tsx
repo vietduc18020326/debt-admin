@@ -3,7 +3,6 @@ import { UIText } from "@/components";
 import { Table, TableProps } from "antd";
 import "./style.css";
 import { useUserByQuery } from "@/store/users";
-import { IUser } from "@/store/users/type";
 import { Cell } from "./Cell";
 
 interface DataType {
@@ -93,18 +92,20 @@ export const UserManagement = memo(function UserManagement() {
   const userIds = useUserByQuery("all");
 
   return (
-    <div className="h-full w-full bg-black py-2 px-6 flex gap-[20px] rounded-[40px] flex-col">
-      <UIText.HeaderLarge className="text-white">
+    <div className="h-full w-full bg-black py-2 px-6 flex gap-[20px] rounded-[40px] flex-col overflow-auto">
+      <UIText.HeaderLarge className="text-white sticky top-0 left-0">
         Quản lý người dùng
       </UIText.HeaderLarge>
-      <Table
-        columns={columns as any}
-        dataSource={userIds as any}
-        rowClassName="table-row"
-        rowKey={(item, index) => {
-          return (index || 0).toString();
-        }}
-      />
+      <div className="min-w-[985px] overflow-scroll ">
+        <Table
+          columns={columns as any}
+          dataSource={userIds as any}
+          rowClassName="table-row"
+          rowKey={(item, index) => {
+            return (index || 0).toString();
+          }}
+        />
+      </div>
     </div>
   );
 });

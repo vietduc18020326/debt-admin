@@ -27,26 +27,38 @@ const HomeView = memo(function HomeView() {
       <div className="h-full w-[331px] bg-black p-4 flex gap-[48px] rounded-[40px] flex-col">
         <div className="w-full  items-center flex justify-center gap-[24px] flex-col">
           <img src={IMAGE_LOGO} className="h-[120px]" />
-          <div className="flex items-center flex-col gap-[4px]">
-            <UIText.HeaderLarge className="text-white">
-              {"No name"}
-            </UIText.HeaderLarge>
-            <UIText.BodyMedium400 className="text-gray-400">
-              {me?.email || ""}
-            </UIText.BodyMedium400>
+          <div className="flex items-center flex-col gap-[16px]">
+            <div className="flex items-center flex-col gap-[4px]">
+              <UIText.HeaderLarge className="text-white">
+                {"No name"}
+              </UIText.HeaderLarge>
+              <UIText.BodyMedium400 className="text-gray-400">
+                {me?.email || ""}
+              </UIText.BodyMedium400>
+            </div>
+            <div
+              className="rounded-[400px] px-[8px] py-[12px]"
+              style={{
+                background:
+                  "linear-gradient(88.86deg, #FEC600 4.05%, #FEF253 99.92%)",
+              }}
+            >
+              <UIText.CaptionMedium500 color={"rgba(41, 41, 51, 1)"}>
+                Tài khoản mặc định
+              </UIText.CaptionMedium500>
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-[24px]">
-          <Button type={"text"} className="justify-between p-0">
+          <Button className="justify-between p-0 bg-transparent border-0">
             <UIText.BodyLarge400 className={"text-white"}>
               Đổi mật khẩu
             </UIText.BodyLarge400>
             <UserCircle02Icon size={24} style={{ color: "#fff" }} />
           </Button>
           <Button
-            type={"text"}
             onClick={onClick}
-            className="justify-between p-0"
+            className="justify-between p-0 bg-transparent border-0"
           >
             <UIText.BodyLarge400 className={"text-white"}>
               Đăng xuất

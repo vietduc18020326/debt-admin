@@ -49,9 +49,9 @@ export default function SignupForm() {
           <p className="mt-4">
             <Link
               className="text-sm text-indigo-600 hover:underline"
-              href={"/sign-in"}
+              href={"/home"}
             >
-              Back to Login
+              Go to home
             </Link>
           </p>
         </div>
