@@ -6,6 +6,8 @@ import {
   syncCredential,
 } from "@/store/credentials/index";
 import { unstable_batchedUpdates } from "react-dom";
+import { getMe } from "@/store/users";
+import { compact } from "lodash";
 
 export async function requestAllCredentials() {
   const { data } = await Fetch.postWithToken<{
@@ -17,7 +19,12 @@ export async function requestAllCredentials() {
       syncCredential(data.credentials);
     }
     setCredentialQueries({
-      all: (data?.credentials || []).map((item) => item.email),
+      all: compact(
+        (data?.credentials || []).map((item) => {
+          if (item.email !== getMe()?.email) return item.email;
+          return undefined;
+        })
+      ),
     });
   });
 
