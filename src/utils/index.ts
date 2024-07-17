@@ -4,3 +4,4 @@ export * from "./createObjectZustand";
 export * from "./createArrayZustand";
 export * from "./fonts";
 export * from "./verify";
+export * from "./errors";

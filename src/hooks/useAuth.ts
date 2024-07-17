@@ -1,5 +1,5 @@
 import { usePathname, useRouter } from "next/navigation";
-import { clearAllToken, isLoggedIn } from "@/utils";
+import { clearAllToken, getRealErrorMessage, isLoggedIn } from "@/utils";
 import { useCallback, useEffect } from "react";
 import { _Core } from "@/services/_Core";
 import { requestLoadMe, requestRefreshToken } from "@/store/users/function";
@@ -26,7 +26,7 @@ export function useAuth() {
       clearAllToken();
     }
     push("/sign-in");
-    await message.error(m as string);
+    await message.error(getRealErrorMessage(m as string));
   }, []);
 
   const onRefreshToken = useCallback(async () => {
