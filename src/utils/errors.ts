@@ -2,7 +2,7 @@ export const ErrorCodeMap: Record<string, string> = {
   success: "success",
   expired_access_token: "Expired access token",
   invalid_access_token: "Invalid access token",
-  invalid_client_key: "invalid_client_key",
+  invalid_client_key: "Invalid client key",
   invalid_refresh_token: "invalid_refresh_token",
   invalid_timestamp: "invalid_timestamp",
   invalid_authentic_key: "invalid_authentic_key",

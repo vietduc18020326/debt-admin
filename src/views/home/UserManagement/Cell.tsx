@@ -87,8 +87,8 @@ const Action = memo(function Action({ id }: Props) {
     }, [user?.system_id, id]);
 
   const onConfirm = useCallback(() => {
-    idleCallback = requestIdleCallback(() => {
-      onVerify().then();
+    idleCallback = requestIdleCallback(async () => {
+      await onVerify();
     });
   }, [onVerify]);
 
