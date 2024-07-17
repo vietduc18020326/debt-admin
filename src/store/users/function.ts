@@ -8,6 +8,7 @@ import {
 import { IUser } from "@/store/users/type";
 import { setUserQueries, syncMe, syncUser } from "@/store/users/index";
 import { _Core } from "@/services/_Core";
+import { unstable_batchedUpdates } from "react-dom";
 
 export async function loginIn(params: { client_key: string }) {
   const { data } = await Fetch.postWithToken<{
@@ -18,20 +19,22 @@ export async function loginIn(params: { client_key: string }) {
     ...params,
   });
 
-  saveClientKey(params.client_key);
-  _Core.clientKey = params.client_key;
-  if (data?.access_token) {
-    saveAccessToken(data?.access_token);
-    _Core.accessToken = data.access_token;
-  }
+  unstable_batchedUpdates(() => {
+    saveClientKey(params.client_key);
+    _Core.clientKey = params.client_key;
+    if (data?.access_token) {
+      saveAccessToken(data?.access_token);
+      _Core.accessToken = data.access_token;
+    }
 
-  if (data?.refresh_token) {
-    saveRefreshToken(data?.refresh_token);
-  }
+    if (data?.refresh_token) {
+      saveRefreshToken(data?.refresh_token);
+    }
 
-  if (data?.me) {
-    syncMe(data.me);
-  }
+    if (data?.me) {
+      syncMe(data.me);
+    }
+  });
 
   return data;
 }
@@ -47,20 +50,22 @@ export async function requestSignup(params: {
     refresh_token: string;
   }>(`https://signup${process.env.NEXT_PUBLIC_DOMAIN}`, params);
 
-  saveClientKey(params.client_key);
-  _Core.clientKey = params.client_key;
-  if (data?.access_token) {
-    saveAccessToken(data?.access_token);
-    _Core.accessToken = data.access_token;
-  }
+  unstable_batchedUpdates(() => {
+    saveClientKey(params.client_key);
+    _Core.clientKey = params.client_key;
+    if (data?.access_token) {
+      saveAccessToken(data?.access_token);
+      _Core.accessToken = data.access_token;
+    }
 
-  if (data?.refresh_token) {
-    saveRefreshToken(data?.refresh_token);
-  }
+    if (data?.refresh_token) {
+      saveRefreshToken(data?.refresh_token);
+    }
 
-  if (data?.me) {
-    syncMe(data.me);
-  }
+    if (data?.me) {
+      syncMe(data.me);
+    }
+  });
 
   return data;
 }
@@ -72,10 +77,12 @@ export async function requestRefreshToken() {
     refresh_token: getRefreshToken(),
   });
 
-  if (data?.access_token) {
-    saveAccessToken(data.access_token);
-    _Core.accessToken = data.access_token;
-  }
+  unstable_batchedUpdates(() => {
+    if (data?.access_token) {
+      saveAccessToken(data.access_token);
+      _Core.accessToken = data.access_token;
+    }
+  });
 
   return data;
 }
@@ -86,16 +93,18 @@ export async function requestLoadMe() {
     users?: IUser[];
   }>(`https://me-load${process.env.NEXT_PUBLIC_DOMAIN}`);
 
-  if (data?.me) {
-    syncMe(data.me);
-  }
+  unstable_batchedUpdates(() => {
+    if (data?.me) {
+      syncMe(data.me);
+    }
 
-  if (data?.users) {
-    syncUser(data.users);
+    if (data?.users) {
+      syncUser(data.users);
+    }
     setUserQueries({
-      all: data.users.map((user) => user.id.toString()),
+      all: (data?.users || []).map((user) => user.id.toString()),
     });
-  }
+  });
 
   return data;
 }

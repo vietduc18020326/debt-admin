@@ -1,0 +1,37 @@
+.ant-modal .ant-modal-content {
+    background-color: rgba(35, 32, 28, 1);
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px 0 rgba(212, 212, 212, 0.25);
+}
+
+.ant-modal .ant-modal-close {
+    color: white;
+}
+
+.ant-modal .ant-modal-header {
+    background: transparent;
+}
+
+.edit-btn-modal {
+    background: linear-gradient(88.86deg, #FEC600 4.05%, #FEF253 99.92%);
+    border-width: 0;
+    box-shadow: 0 4px 25px 0 rgba(253, 250, 198, 0.15);
+    padding: 14px 16px;
+    border-radius: 40px;
+}
+
+.edit-btn-modal > .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    background: linear-gradient(88.86deg, #FEC600 4.05%, #FEF253 99.92%);
+}
+
+.edit-modal {
+}
+
+.edit-modal .ant-modal .ant-modal-footer {
+    margin-top: 36px;
+}
+
+.edit-modal .ant-modal .ant-modal-header {
+    margin-bottom: 36px;
+}

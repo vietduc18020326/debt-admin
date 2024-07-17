@@ -12,11 +12,11 @@ class SFetch {
   };
 
   private __getRequiredParams = (): Record<string, any> => ({
-    __code: "native",
+    // __code: "native",
     access_token: _Core.accessToken,
     client_key: _Core.clientKey,
-    authentic: 1,
-    major_version: 1,
+    // authentic: 1,
+    // major_version: 1,
   });
 
   __getRealUrl = (url: string, options: Record<string, any> = {}): string => {

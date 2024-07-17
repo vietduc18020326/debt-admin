@@ -4,7 +4,7 @@ import { useCallback, useEffect } from "react";
 import { _Core } from "@/services/_Core";
 import { requestLoadMe, requestRefreshToken } from "@/store/users/function";
 import { useAsyncFn } from "react-use";
-import { useAutoToastErrors } from "@/hooks/useAutoErrors";
+import { useAutoToastErrors } from "@/hooks/useAutoToastErrors";
 import { AxiosError } from "axios";
 import { message } from "antd";
 
@@ -21,6 +21,11 @@ export function useAuth() {
       await onRefreshToken();
       return;
     }
+
+    if (m == "invalid_client_key") {
+      clearAllToken();
+    }
+    push("/sign-in");
     await message.error(m as string);
   }, []);
 
@@ -28,6 +33,8 @@ export function useAuth() {
     try {
       await requestRefreshToken();
       await requestLoadMe();
+
+      return push("/home");
     } catch (err: any) {
       onAuthError(err).then();
     }

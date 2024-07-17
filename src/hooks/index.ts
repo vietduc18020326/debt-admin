@@ -1,3 +1,4 @@
 export * from "./useManualLogin";
 export * from "./useAuth";
-export * from "./useAutoErrors";
+export * from "./useAutoToastErrors";
+export * from "./useBoolean";

@@ -48,6 +48,19 @@
     margin: 0;
 }
 
+.ant-pagination .ant-pagination-item a {
+    color: white;
+}
+
+.ant-pagination .ant-pagination-item-active a {
+    color: #000
+}
+
+.ant-pagination .ant-pagination-prev button,
+.ant-pagination .ant-pagination-next button {
+    color: white;
+}
+
 .ant-pagination .ant-pagination-disabled .ant-pagination-item-link,
 .ant-pagination .ant-pagination-disabled:hover .ant-pagination-item-link {
     color: white;

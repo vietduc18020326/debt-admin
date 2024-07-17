@@ -33,7 +33,7 @@ const HomeView = memo(function HomeView() {
                 {"No name"}
               </UIText.HeaderLarge>
               <UIText.BodyMedium400 className="text-gray-400">
-                {me?.email || ""}
+                {me?.email || "No email"}
               </UIText.BodyMedium400>
             </div>
             <div

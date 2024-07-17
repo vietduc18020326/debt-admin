@@ -18,6 +18,9 @@ export default function RootLayoutComp({
           Button: {
             defaultHoverBg: "rgba(255, 255, 255, 0.4)",
           },
+          Spin: {
+            colorBgMask: "rgba(0, 0, 0, 0.2)",
+          },
         },
       }}
     >

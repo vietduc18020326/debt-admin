@@ -1,16 +1,12 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { UIText } from "@/components";
-import { Table, TableProps } from "antd";
+import { Empty, Table, TableProps } from "antd";
 import "./style.css";
-import { useUserByQuery } from "@/store/users";
 import { Cell } from "./Cell";
-
-interface DataType {
-  key: string;
-  name: string;
-  email: string;
-  created_date: number;
-}
+import { useAsyncFn } from "react-use";
+import { useCredentialByQuery } from "@/store/credentials";
+import { requestAllCredentials } from "@/store/credentials/function";
+import { useAutoToastErrors } from "@/hooks";
 
 const columns: TableProps<string>["columns"] = [
   {
@@ -38,6 +34,11 @@ const columns: TableProps<string>["columns"] = [
     render: (data, id, index) => <Cell.Email id={id} index={index} />,
   },
   {
+    title: "Vai trò",
+    dataIndex: "role",
+    render: (data, id, index) => <Cell.Role id={id} index={index} />,
+  },
+  {
     title: "Thời gian tạo",
     dataIndex: "created_date",
     render: (data, id, index) => <Cell.CreatedDate id={id} index={index} />,
@@ -55,57 +56,41 @@ const columns: TableProps<string>["columns"] = [
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: "01",
-    name: "John Brown",
-    email: "huytom@gmail.com",
-    created_date: 18889898989,
-  },
-  {
-    key: "02",
-    name: "Jim Green",
-    email: "0571-22098333",
-    created_date: 18889898888,
-  },
-  {
-    key: "03",
-    name: "Joe Black",
-    created_date: 18900010002,
-    email: "Sydney No. 1 Lake Park",
-  },
-  {
-    key: "04",
-    name: "Jim Red",
-    created_date: 18900010002,
-    email: "London No. 2 Lake Park",
-  },
-  {
-    key: "05",
-    name: "Jake White",
-    created_date: 18900010002,
-    email: "Dublin No. 2 Lake Park",
-  },
-];
+const rowKey = (item: any, index?: number) => (index || 0).toString();
 
 export const UserManagement = memo(function UserManagement() {
-  const userIds = useUserByQuery("all");
+  const ids = useCredentialByQuery("all");
+
+  const [{ loading, error }, firstLoad] = useAsyncFn(requestAllCredentials);
+
+  useEffect(() => {
+    firstLoad().then();
+  }, []);
+
+  useAutoToastErrors([error]);
 
   return (
     <div className="h-full w-full bg-black py-2 px-6 flex gap-[20px] rounded-[40px] flex-col overflow-auto">
-      <UIText.HeaderLarge className="text-white sticky top-0 left-0">
-        Quản lý người dùng
-      </UIText.HeaderLarge>
-      <div className="min-w-[985px]">
-        <Table
-          columns={columns as any}
-          dataSource={userIds as any}
-          rowClassName="table-row"
-          rowKey={(item, index) => {
-            return (index || 0).toString();
-          }}
-        />
-      </div>
+      {error ? (
+        <div className="flex items-center justify-center mt-[100px]">
+          <Empty />
+        </div>
+      ) : (
+        <>
+          <UIText.HeaderLarge className="text-white sticky top-0 left-0">
+            Quản lý người dùng
+          </UIText.HeaderLarge>
+          <div className="min-w-[985px] overflow-scroll ">
+            <Table
+              columns={columns as any}
+              dataSource={ids as any}
+              loading={loading}
+              rowClassName="table-row"
+              rowKey={rowKey}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 });
