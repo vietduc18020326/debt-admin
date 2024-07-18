@@ -9,8 +9,7 @@ import {
 import { Button, message, Popconfirm, Spin } from "antd";
 import { isVerified } from "@/utils";
 import { useCredential } from "@/store/credentials";
-import { useAutoToastErrors, useBoolean } from "@/hooks";
-import { useAsyncFn } from "react-use";
+import { useAutoToastErrors, useBoolean, useAsyncFn } from "@/hooks";
 import { requestVerifyUser } from "@/store/credentials/function";
 import { EditUserModal } from "@/views/home/EditUserModal";
 import { EUserRole } from "@/store/users/type";
