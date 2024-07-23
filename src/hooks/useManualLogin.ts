@@ -1,17 +1,8 @@
 import { useCallback, useMemo } from "react";
-import { Fetch } from "@/services/_Fetch";
-import {
-  clearAllToken,
-  getBrowserUniqueId,
-  saveAccessToken,
-  saveClientKey,
-  saveRefreshToken,
-} from "@/utils";
-import md5 from "md5";
+import { clearAllToken } from "@/utils";
 import { message } from "antd";
 import { AxiosError } from "axios";
-import { redirect } from "next/navigation";
-import { loginIn, requestSignup } from "@/store/users/function";
+import { createClient, loginIn, requestSignup } from "shared-core";
 
 export function useManualLogin() {
   const onAuthError = useCallback(async (e: AxiosError) => {
@@ -22,28 +13,29 @@ export function useManualLogin() {
 
   const onCreateClient = useCallback(async () => {
     try {
-      const timestamp = Math.floor(new Date().valueOf() / 1000);
-      const os = "web";
-      const device_id = getBrowserUniqueId();
-      const authentic = md5(
-        device_id +
-          "&" +
-          os +
-          "&" +
-          timestamp +
-          "&" +
-          process.env.NEXT_PUBLIC_AUTHENTIC_KEY
-      );
-      const { data } = await Fetch.postWithToken<{
-        client_key?: string;
-      }>(`https://createclient${process.env.NEXT_PUBLIC_DOMAIN}`, {
-        timestamp,
-        device_id,
-        authentic,
-        os,
-      });
-
-      return data?.client_key;
+      // const timestamp = Math.floor(new Date().valueOf() / 1000);
+      // const os = "web";
+      // const device_id = getBrowserUniqueId();
+      // const authentic = md5(
+      //   device_id +
+      //     "&" +
+      //     os +
+      //     "&" +
+      //     timestamp +
+      //     "&" +
+      //     process.env.NEXT_PUBLIC_AUTHENTIC_KEY
+      // );
+      // const { data } = await Fetch.postWithToken<{
+      //   client_key?: string;
+      // }>(`https://createclient${process.env.NEXT_PUBLIC_DOMAIN}`, {
+      //   timestamp,
+      //   device_id,
+      //   authentic,
+      //   os,
+      // });
+      //
+      // return data?.client_key;
+      return await createClient();
     } catch (e: any) {
       onAuthError(e).then();
       throw e;

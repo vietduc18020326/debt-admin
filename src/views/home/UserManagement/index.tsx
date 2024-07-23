@@ -3,7 +3,7 @@ import { UIText } from "@/components";
 import { Empty, Table, TableProps } from "antd";
 import "./style.css";
 import { Cell } from "./Cell";
-import { useAsyncFn } from "react-use";
+import { useAsyncFn } from "shared-core";
 import { useCredentialByQuery } from "@/store/credentials";
 import { requestAllCredentials } from "@/store/credentials/function";
 import { useAutoToastErrors } from "@/hooks";

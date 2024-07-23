@@ -1,12 +1,10 @@
-import { Fetch } from "@/services/_Fetch";
-import { EUserRole, IUser } from "@/store/users/type";
+import { Fetch, EUserRole, getMe } from "shared-core";
 import { ICredential } from "@/store/credentials/type";
 import {
   setCredentialQueries,
   syncCredential,
 } from "@/store/credentials/index";
 import { unstable_batchedUpdates } from "react-dom";
-import { getMe } from "@/store/users";
 import { compact } from "lodash";
 
 export async function requestAllCredentials() {

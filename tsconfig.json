@@ -17,6 +17,9 @@
         "name": "next"
       }
     ],
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest", "node"],
     "paths": {
       "@/*": ["./src/*"]
     }

@@ -2,15 +2,11 @@ import { memo, useCallback } from "react";
 import { useManualLogin } from "@/hooks";
 import { useRouter } from "next/navigation";
 import { Button } from "antd";
-import { useMe } from "@/store/users";
+import { useMe } from "shared-core";
 import { IMAGE_LOGO } from "@/dummy";
 import { UIText } from "@/components";
 import { UserManagement } from "@/views/home/UserManagement";
-import {
-  Logout03Icon,
-  PencilEdit01Icon,
-  UserCircle02Icon,
-} from "hugeicons-react";
+import { Logout03Icon, UserCircle02Icon } from "hugeicons-react";
 
 const HomeView = memo(function HomeView() {
   const { onLogout } = useManualLogin();

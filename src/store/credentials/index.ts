@@ -1,4 +1,4 @@
-import { createArrayZustand } from "@/utils";
+import { createArrayZustand } from "shared-core";
 import { ICredential } from "./type";
 
 export const [

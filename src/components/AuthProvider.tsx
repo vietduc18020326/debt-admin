@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { useAuth } from "@/hooks";
-import { IUser } from "@/store/users/type";
+import { IUser } from "shared-core";
 
 interface IAuthContext {
   user: IUser | null;
@@ -26,9 +26,6 @@ export const AuthContext = createContext<IAuthContext>({
 export const AuthProvider = function ({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<IUser | null>(null);
 
-  useEffect(() => {
-    // setUser(getGoalieUser());
-  }, []);
   useAuth();
 
   return (

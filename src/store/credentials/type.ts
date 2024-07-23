@@ -1,4 +1,4 @@
-import { EUserRole } from "@/store/users/type";
+import { EUserRole } from "shared-core";
 
 export interface ICredential {
   email: string;

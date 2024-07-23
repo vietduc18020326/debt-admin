@@ -9,10 +9,10 @@ import {
 import { Button, message, Popconfirm, Spin } from "antd";
 import { isVerified } from "@/utils";
 import { useCredential } from "@/store/credentials";
-import { useAutoToastErrors, useBoolean, useAsyncFn } from "@/hooks";
+import { useAutoToastErrors } from "@/hooks";
+import { useBoolean, useAsyncFn, EUserRole } from "shared-core";
 import { requestVerifyUser } from "@/store/credentials/function";
 import { EditUserModal } from "@/views/home/EditUserModal";
-import { EUserRole } from "@/store/users/type";
 
 interface Props {
   data?: any;

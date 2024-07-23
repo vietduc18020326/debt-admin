@@ -2,8 +2,8 @@ import { Button, Form, Input, message, Typography } from "antd";
 import { useManualLogin } from "@/hooks";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useAsyncFn } from "react-use";
-import { redirect, useRouter } from "next/navigation";
+import { useAsyncFn } from "shared-core";
+import { useRouter } from "next/navigation";
 import { IMAGE_LOGO, IMAGE_LOGO_NAME } from "@/dummy";
 import { UIText } from "@/components/UIText";
 

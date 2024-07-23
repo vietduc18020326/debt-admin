@@ -1,9 +1,7 @@
 "use client";
 
-// import { useUser } from '@goalie/nextjs'
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
-// import { getRecentVisit } from '@shared/libs'
 
 export default function UserChecking() {
   // const { user } = useUser()

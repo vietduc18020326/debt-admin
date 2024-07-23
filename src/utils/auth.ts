@@ -1,5 +1,5 @@
 import { decode } from "jsonwebtoken";
-import { _Core } from "@/services/_Core";
+import { Core } from "shared-core";
 
 const CLIENT_KEY = "CLIENT_KEY";
 const ACCESS_TOKEN = "ACCESS_TOKEN";
@@ -78,8 +78,8 @@ export const isSessionStillAlive = () => {
 
 export const isLoggedIn = () => {
   if (Boolean(getClientKey() && getAccessToken())) {
-    _Core.accessToken = getAccessToken() || "";
-    _Core.clientKey = getClientKey() || "";
+    Core.accessToken = getAccessToken() || "";
+    Core.clientKey = getClientKey() || "";
   }
   return Boolean(getClientKey() && getAccessToken());
 };

@@ -1,10 +1,12 @@
 import { usePathname, useRouter } from "next/navigation";
-import { clearAllToken, getRealErrorMessage, isLoggedIn } from "@/utils";
+import { getRealErrorMessage } from "@/utils";
 import { useCallback, useEffect } from "react";
-import { _Core } from "@/services/_Core";
-import { requestLoadMe, requestRefreshToken } from "@/store/users/function";
-import { useAsyncFn } from "react-use";
-import { useAutoToastErrors } from "@/hooks/useAutoToastErrors";
+import {
+  requestLoadMe,
+  requestRefreshToken,
+  clearAllToken,
+  isLoggedIn,
+} from "shared-core";
 import { AxiosError } from "axios";
 import { message } from "antd";
 

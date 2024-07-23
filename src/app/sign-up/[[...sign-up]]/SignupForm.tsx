@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useManualLogin } from "@/hooks";
-import { useAsyncFn } from "react-use";
+import { useAsyncFn } from "shared-core";
 import { UIText } from "@/components";
 
 export default function SignupForm() {
