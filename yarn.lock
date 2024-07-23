@@ -3788,7 +3788,14 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-cross-spawn@^7.0.0, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
+cross-env@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
+  integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+  dependencies:
+    cross-spawn "^7.0.1"
+
+cross-spawn@^7.0.0, cross-spawn@^7.0.1, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
   integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
@@ -9427,9 +9434,9 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-"shared-core@git+ssh://git@github.com:vietduc18020326/shared-core.git#dev":
+"shared-core@git+https://vietduc18020326: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@github.com/vietduc18020326/shared-core.git#dev":
   version "1.0.2"
-  resolved "git+ssh://git@github.com:vietduc18020326/shared-core.git#e7e94d4aa7eaa295542e5287430110426a90e63f"
+  resolved "git+https://vietduc18020326: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@github.com/vietduc18020326/shared-core.git#e7e94d4aa7eaa295542e5287430110426a90e63f"
   dependencies:
     axios "^1.7.2"
 
